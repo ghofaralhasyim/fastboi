@@ -1,0 +1,48 @@
+$TOTAL_GRID: 12 !default;
+$GRID_MD: 48 * 1em !default;
+$GRID_LG: 64 * 1em !default;
+
+@function gridSize($size) {
+  @return $size / $BZG_COUNT * 100%;
+}
+
+.grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 0;
+}
+.grid_col {
+  width: 100%;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+@for $i from 1 through $TOTAL_GRID {
+  .grid_col[data-col*='s#{$i}'] {
+    width: bzgSize($i);
+  }
+}
+
+@media screen and (min-width: #{$GRID_MD} ) {
+  .grid_col[data-col*='m'] {
+    margin-left: 0;
+  }
+  @for $i from 1 through $TOTAL_GRID {
+    .grid_col[data-col*='m#{$i}'] {
+      width: bzgSize($i);
+    }
+  }
+}
+
+@media screen and (min-width: #{$GRID_LG}) {
+  .grid_col[data-col*='l'] {
+    margin-left: 0;
+  }
+
+  @for $i from 1 through $TOTAL_GRID {
+    .grid_col[data-col*='l#{$i}'] {
+      width: bzgSize($i);
+    }
+  }
+}

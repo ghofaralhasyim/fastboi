@@ -1,0 +1,34 @@
+html,
+body {
+  height: 100%;
+}
+
+.main-container {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.main-container-item {
+  display: table-row;
+  height: 1px;
+
+  &.\--full {
+    height: 100%;
+  }
+}
+
+.container {
+  width: 92%;
+  max-width: 960px;
+  margin: 0 auto;
+
+  @media #{$medium} {
+    width: 94%;
+  }
+
+  @media #{$large} {
+    max-width: 1121px;
+  }
+}

@@ -1,0 +1,41 @@
+$base_px_font_size: 16;
+$base_font_size: $base_px_font_size * 1px;
+$base_font: sans-serif;
+$base_line_height: 1.6;
+
+$small: 'screen and (min-width: 28em)';
+$medium: 'screen and (min-width: 48em)';
+$large: 'screen and (min-width: 64em)';
+$extra_large: 'screen and (min-width: 75em)';
+
+$palettes: (
+  'primary': #003246,
+  'yellow': #febc14,
+  'blue': #2a7195,
+  'grey': #d3d5cf,
+  'dark-grey': #606060,
+  'light-green': #bde2d6,
+  'light-grey': #f6f6f6,
+  'red': #ff0000,
+  'white': #ffffff,
+  'black': #000000,
+);
+
+@function palette($color) {
+  @if map-has-key($palettes, $color) {
+    @return map-get($palettes, $color);
+  } @else {
+    @warn "key `#{$color}` was not found. Falling back to #000";
+    @return #000;
+  }
+}
+
+$primary: palette('primary');
+$blue: palette('blue');
+$yellow: palette('yellow');
+$white: palette('white');
+$red: palette('red');
+
+$black: #000;
+$black90: lighten($black, 10%);
+$black80: lighten($black, 20%);

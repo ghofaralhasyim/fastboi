@@ -1,0 +1,40 @@
+$headings: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6';
+$RATIO: 1.2;
+$multiplier: 5 * 1;
+
+@mixin typography_getStyle($multiplier, $direction: 'up') {
+  $font_size: 1em;
+
+  @if $direction == up {
+    @if $multiplier == 0 {
+      $font_size: 1em;
+    } @else {
+      @for $i from 1 through $multiplier {
+        $font_size: $font_size * $RATIO;
+      }
+    }
+  } @else {
+    @for $i from 1 through $multiplier {
+      $font_size: (1 / $RATIO) * $font_size;
+    }
+  }
+}
+
+@each $heading in $headings {
+  #{ $heading },
+  .#{ $heading } {
+    @if $multiplier < 0 {
+      $temp: $multiplier * -1;
+
+      @include typography_getStyle($temp, 'down');
+    } @else {
+      @include typography_getStyle($multiplier);
+    }
+  }
+
+  $multiplier: $multiplier - 1;
+}
+
+.f-bold {
+  font-weight: bold;
+}
